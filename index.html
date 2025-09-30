@@ -1,0 +1,81 @@
+<!-- ========================= index.html ========================= -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dark Garbage • Home Lab: Splunk on Windows Server (VirtualBox)</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <meta name="description" content="Home lab walkthrough: Splunk Enterprise on Windows Server Core inside VirtualBox, file sharing, install, and verification screenshots." />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Dark Garbage Lab</h1>
+    <p class="subtitle">Splunk Enterprise on Windows Server (Server Core) • VirtualBox</p>
+    <nav class="top-nav">
+      <a href="#overview">Overview</a>
+      <a href="#steps">Steps</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#notes">Notes</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="overview" class="card">
+      <h2>Overview</h2>
+      <p>
+        This project shows Splunk Enterprise installed on a Windows Server Core VM running in VirtualBox.
+        It covers unlocking the Server Core console, mounting a shared folder, running the MSI installer,
+        and verifying Splunk directories (<code>C:\\Program Files\\Splunk</code>), plus navigating to 
+        <code>etc</code> for configuration. All screenshots and CLI outputs are captured from the live lab.
+      </p>
+      <ul class="facts">
+        <li>Hypervisor: VirtualBox</li>
+        <li>Guest: Windows Server (Server Core)</li>
+        <li>Role: Splunk Enterprise server</li>
+        <li>Focus: install, filesystem layout, basic service checks</li>
+      </ul>
+    </section>
+
+    <section id="steps" class="card">
+      <h2>Step-by-step</h2>
+      <ol class="steps">
+        <li><strong>Unlock Server Core</strong>: Use VirtualBox menu <em>Input → Keyboard → Insert Ctrl+Alt+Del</em> to log in.</li>
+        <li><strong>Confirm shared folder</strong>: <code>net use</code> and navigate to <code>\\\\VBoxSvr\\Windows_Shared_Folder</code>.</li>
+        <li><strong>Run MSI</strong>: <code>start splunk-10.x.x-windows-x64.msi</code> from the shared folder.</li>
+        <li><strong>Verify install</strong>: Check <code>C:\\Program Files\\Splunk</code> with <code>ls</code>. Expect <code>bin, etc, var</code>, etc.</li>
+        <li><strong>Explore config</strong>: <code>cd \"C:\\Program Files\\Splunk\\etc\"</code> to see <code>apps</code>, <code>system</code>, <code>users</code>.</li>
+      </ol>
+      <p class="hint">The full command list and screenshots are in the gallery below with captions.</p>
+    </section>
+
+    <section id="gallery" class="card">
+      <h2>Gallery</h2>
+      <p>Below are screenshots uploaded to the <code>images/</code> folder, auto-rendered from <code>images/manifest.json</code>.</p>
+      <div id="gallery-grid" class="grid"></div>
+    </section>
+
+    <section id="notes" class="card">
+      <h2>Notes & Gotchas</h2>
+      <ul>
+        <li>Paths with spaces require quotes in PowerShell: <code>cd \"program files\"</code>.</li>
+        <li>If <code>net use</code> shows the share but it’s empty, check your host-side folder permissions and that <em>Auto-mount</em> is configured in VirtualBox.</li>
+        <li>Server Core has no GUI for Splunk Web. Access Splunk Web from a browser on your host using the VM’s IP and port 8000, or manage Splunk with CLI commands in <code>bin</code>.</li>
+      </ul>
+    </section>
+
+    <section id="about" class="card about">
+      <h2>About</h2>
+      <p>Built by Adrian “Dark Garbage” Hernandez for a security lab portfolio. Clean, minimal, and to the point.</p>
+      <p>Repo contains only static files. No frameworks, no drama.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Dark Garbage • Lab Portfolio</p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
