@@ -1,0 +1,48 @@
+<!-- ========================= assets/style.css ========================= -->
+/* Minimal, readable styles. Self-contained for GitHub Pages. */
+:root {
+  --bg: #0b0d10;
+  --card: #12161b;
+  --text: #e8eef8;
+  --muted: #9fb3c8;
+  --accent: #00e0a4;
+  --accent-2: #7cf7ff;
+  --grid-gap: 14px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font: 16px system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+.site-header { padding: 28px 20px; border-bottom: 1px solid #1c2733; background: linear-gradient(180deg, #0b0d10, #0f141a); position: sticky; top: 0; z-index: 5; }
+.site-header h1 { margin: 0 0 4px; font-size: 28px; letter-spacing: 0.5px; }
+.subtitle { margin: 0 0 12px; color: var(--muted); }
+.top-nav { display: flex; gap: 16px; flex-wrap: wrap; }
+.top-nav a { color: var(--accent-2); text-decoration: none; border: 1px solid #223;
+  padding: 6px 10px; border-radius: 999px; }
+.top-nav a:hover { background: #0e1822; }
+main { max-width: 1100px; margin: 28px auto; padding: 0 16px; }
+.card { background: var(--card); border: 1px solid #1d2733; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+.card h2 { margin-top: 0; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px 16px; }
+.steps { line-height: 1.6; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--grid-gap); }
+.tile { display: block; border-radius: 12px; overflow: hidden; border: 1px solid #1a2531; background: #0f1318; }
+.tile img { width: 100%; height: 180px; object-fit: cover; display: block; filter: saturate(1.05) contrast(1.05); }
+.tile .caption { padding: 10px; color: var(--muted); font-size: 14px; border-top: 1px solid #1a2531; }
+.site-footer { padding: 32px 20px; color: #7c92a7; text-align: center; }
+
+/* Lightbox */
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 20; }
+.lightbox.open { display: flex; }
+.lightbox .frame { max-width: 96vw; max-height: 90vh; position: relative; }
+.lightbox img { max-width: 100%; max-height: 80vh; display: block; margin: 0 auto; border-radius: 12px; }
+.lightbox .lb-caption { color: #cbd6e2; margin-top: 10px; text-align: center; }
+.lb-btn { position: absolute; top: 50%; transform: translateY(-50%); border: 0; background: rgba(20,25,32,0.6); color: #fff; font-size: 22px; padding: 8px 12px; border-radius: 10px; cursor: pointer; }
+.lb-prev { left: -60px; }
+.lb-next { right: -60px; }
+.lb-close { position: absolute; top: -44px; right: 0; padding: 8px 12px; border-radius: 10px; }
+
+/* Mobile tweaks */
+@media (max-width: 640px){
+  .lightbox .frame { width: 96vw; }
+  .lb-prev { left: 8px; }
+  .lb-next { right: 8px; }
+}
